@@ -576,7 +576,7 @@ static int Connection_Init(udt_Connection *self, PyObject *args,
     static char *keywordList[] = { "user", "password", "dsn", "mode",
             "handle", "pool", "threaded", "events", "cclass", "purity",
             "newpassword", "encoding", "nencoding", "edition", "appcontext",
-            "tag", "matchanytag", NULL };
+            "tag", "matchanytag", "lobprefetchsize", NULL };
 
     // parse arguments
     pool = NULL;
@@ -593,13 +593,13 @@ static int Connection_Init(udt_Connection *self, PyObject *args,
     if (dpiContext_initConnCreateParams(g_DpiContext, &dpiCreateParams) < 0)
         return Error_RaiseAndReturnInt();
     if (!PyArg_ParseTupleAndKeywords(args, keywordArgs,
-            "|OOOikO!OOOiOssOOOO", keywordList, &usernameObj, &passwordObj,
+            "|OOOikO!OOOiOssOOOOI", keywordList, &usernameObj, &passwordObj,
             &dsnObj, &dpiCreateParams.authMode,
             &dpiCreateParams.externalHandle, &g_SessionPoolType, &pool,
             &threadedObj, &eventsObj, &cclassObj, &dpiCreateParams.purity,
             &newPasswordObj, &dpiCommonParams.encoding,
             &dpiCommonParams.nencoding, &editionObj, &contextObj, &tagObj,
-            &matchAnyTagObj))
+            &matchAnyTagObj, &dpiCreateParams.lobPrefetchSize))
         return -1;
     if (GetBooleanValue(threadedObj, 0, &temp) < 0)
         return -1;
