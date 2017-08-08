@@ -1,3 +1,17 @@
+# Yahoo Fork of cx_oracle
+This is a fork of cx_oracle that adds a setting to enable LOB prefetching. If 
+you're fetching a lot of LOB data this is a huge boon to performance.
+
+Unfortunately I'm unable to sign Oracle's CLA, so this fork is the best I can 
+do. If that changes in the future, these changes can be merged into the 
+original codebase and this fork abandoned.
+
+The branch with these changes is the default branch on this repo, yahoo-master.
+I'll try to ocassionally merge in changes from upstream as needed. Feel free to
+open an issue with any questions or issues.
+
+See also github.com/jacobtolar/odpi for the required odpi changes.
+
 # Open Source Python/Oracle Utility - cx_Oracle
 
 cx_Oracle is a Python extension module that enables access to Oracle Database.
